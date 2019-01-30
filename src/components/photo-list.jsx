@@ -4,7 +4,7 @@ import {
     Container,
     Card,
     CardColumns,
-    CardBlock,
+    CardBody,
     CardImg,
     CardTitle,
     CardSubtitle,
@@ -24,14 +24,14 @@ const PhotoList = ({ characters, match }) => (
         <Banner />
         <CardColumns>
             {characters.map(character => (
-                <Link to={`${match.url}/${character.id}`}>
-                    <Card key={character.id} inverse style={styles}>
+                <Link key={character.id} to={`${match.url}/${character.id}`}>
+                    <Card inverse style={styles}>
                         <CardImg width="100%" src={character.image} alt={character.name} />
-                        <CardBlock>
+                        <CardBody>
                             <CardTitle>Name: {character.name}</CardTitle>
                             <CardSubtitle>Species: {character.species}</CardSubtitle>
                             <CardText>Status: {character.status}</CardText>
-                        </CardBlock>
+                        </CardBody>
                     </Card>
                 </Link>
             ))}

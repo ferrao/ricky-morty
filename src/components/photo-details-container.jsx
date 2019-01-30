@@ -1,26 +1,14 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import api from '../api';
-import Spinner from '../components/spinner';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
+import { selectCharacter } from '../redux/selectors';
 import PhotoDetails from './photo-details';
 
-class PhotoListContainer extends Component {
-    state = {
-        character: undefined
-    };
-    async componentDidMount() {
-        const { params } = this.props.match;
-        const { data } = await api.get(`/character/${params.id}`);
+const PhotoDetailsContainer = ({ character }) =>
+    character ? <PhotoDetails character={character} /> : <Redirect to="/" />;
 
-        this.setState({
-            character: data
-        });
-    }
+const mapStateToProps = (state, ownProps) => ({
+    character: selectCharacter(state, Number.parseInt(ownProps.match.params.id))
+});
 
-    render() {
-        const { character } = this.state;
-        return character ? <PhotoDetails character={character} /> : <Spinner />;
-    }
-}
-
-export default withRouter(PhotoListContainer);
+export default connect(mapStateToProps)(withRouter(PhotoDetailsContainer));

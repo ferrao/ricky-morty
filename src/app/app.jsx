@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Banner from '../components/banner';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 import PhotoList from '../components/photo-list-container';
 import PhotoDetails from '../components/photo-details-container';
 
@@ -9,6 +10,7 @@ import './app.css';
 class App extends Component {
     render() {
         return (
+            <Provider store={store}>
                 <Router>
                     <Switch>
                         <Route exact path="/photos/:id" component={PhotoDetails} />
@@ -16,6 +18,7 @@ class App extends Component {
                         <Redirect to="/photos" />
                     </Switch>
                 </Router>
+            </Provider>
         );
     }
 }
