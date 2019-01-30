@@ -5,6 +5,7 @@ import store from '../redux/store';
 import PhotoList from '../components/photo-list-container';
 import PhotoDetails from '../components/photo-details-container';
 
+import 'normalize.css';
 import './app.css';
 
 class App extends Component {

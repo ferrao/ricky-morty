@@ -1,42 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
-import {
-    Container,
-    Card,
-    CardColumns,
-    CardBody,
-    CardImg,
-    CardTitle,
-    CardSubtitle,
-    CardText
-} from 'reactstrap';
+import { BLACK } from '../styles/colors';
+import ImageCard from '../styles/image-card';
+
 import Banner from './banner';
 
-const styles = {
-    maxWidth: 300,
-    backgroundColor: '#333',
-    borderColor: '#333',
-    margin: 50
-};
+const Wrapper = styled.div`
+    padding: 100px;
+    background-color: ${BLACK};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+`;
 
 const PhotoList = ({ characters, match }) => (
-    <Container fluid>
+    <Wrapper>
         <Banner />
-        <CardColumns>
-            {characters.map(character => (
-                <Link key={character.id} to={`${match.url}/${character.id}`}>
-                    <Card inverse style={styles}>
-                        <CardImg width="100%" src={character.image} alt={character.name} />
-                        <CardBody>
-                            <CardTitle>Name: {character.name}</CardTitle>
-                            <CardSubtitle>Species: {character.species}</CardSubtitle>
-                            <CardText>Status: {character.status}</CardText>
-                        </CardBody>
-                    </Card>
-                </Link>
-            ))}
-        </CardColumns>
-    </Container>
+        {characters.map(character => (
+            <Link key={character.id} to={`${match.url}/${character.id}`}>
+                <ImageCard src={character.image} />
+            </Link>
+        ))}
+    </Wrapper>
 );
 
 export default withRouter(PhotoList);

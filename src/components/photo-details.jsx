@@ -1,22 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Container, Card, CardImg } from 'reactstrap';
+import ImageCard from '../styles/image-card';
+import { SAN_JUAN, REGAL_BLUE } from '../styles/colors';
 
-const styles = {
-    maxWidth: 800,
-    backgroundColor: '#333',
-    borderColor: '#333',
-    margin: 100
-};
+const Wrapper = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right, ${REGAL_BLUE}, ${SAN_JUAN});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
 const PhotoDetails = ({ character, match }) => (
-    <Container>
+    <Wrapper>
         <Link to="/">
-            <Card key={character.id} inverse style={styles}>
-                <CardImg width="100%" src={character.image} alt={character.name} />
-            </Card>
+            <ImageCard
+                large
+                shadow
+                src={character.image}
+                header={character.name}
+                data={`${character.species} : ${character.status}`}
+            />
         </Link>
-    </Container>
+    </Wrapper>
 );
 
 export default PhotoDetails;

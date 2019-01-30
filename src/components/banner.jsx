@@ -1,14 +1,17 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+`;
 
 const Banner = () => (
-    <Container fluid>
-        <Row>
-            <Col>
-                <img src="/images/banner.jpg" className="img-fluid" alt="banner" />;
-            </Col>
-        </Row>
-    </Container>
+    <Wrapper>
+        <img src="/images/banner.jpg" alt="banner"/>;
+    </Wrapper>
 );
 
 export default Banner;
