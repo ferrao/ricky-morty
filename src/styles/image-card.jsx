@@ -27,11 +27,12 @@ const Data = styled.div`
     left: 0;
 `;
 
-const ImageCard = styled.div.attrs({
-    style: ({ src }) => ({
+const ImageCard = styled.div.attrs(({ src }) => ({
+    style: {
+        // required to prevent different class name on each image card
         backgroundImage: `url(${src})`
-    })
-})`
+    }
+}))`
     overflow: hidden;
     position: relative;
     width: 100%;

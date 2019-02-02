@@ -22,7 +22,7 @@ class App extends Component {
                     <Route
                         render={({ location }) => (
                             <PoseGroup>
-                                <RouteContainer key={location.key}>
+                                <RouteContainer key={location.pathname}>
                                     <Switch>
                                         <Route exact path="/photos/:id" component={PhotoDetails} />
                                         <Route exact path="/photos" component={PhotoList} />
