@@ -27,12 +27,16 @@ const Data = styled.div`
     left: 0;
 `;
 
-const ImageCard = styled.div`
+const ImageCard = styled.div.attrs({
+    style: ({ src }) => ({
+        backgroundImage: `url(${src})`
+    })
+})`
     overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
-    max-width: ${({ large }) => (large ? '800px' : '200px')};
+    max-width: ${({ large }) => (large ? '600px' : '200px')};
     padding: 0 1.7rem;
     margin: 20px;
     background-color: ${WHITE};
@@ -43,8 +47,6 @@ const ImageCard = styled.div`
         shadow ? `0 19px 38px ${rgba(BLACK, 0.3)}, 0 15px 12px ${rgba(BLACK, 0.2)}` : 'none'};
     border-radius: ${({ large }) => (large ? '0' : '5%')};
 
-    background-image: url(${({ src }) => src});
-
     img {
         visibility: hidden;
 
@@ -53,10 +55,10 @@ const ImageCard = styled.div`
     }
 `;
 
-export default ({ src, large, shadow, header, data }) => (
+export default ({ src, large, shadow, header, children }) => (
     <ImageCard src={src} large={large} shadow={shadow}>
         <img src={src} alt="card" />
         {header && <Header>{header}</Header>}
-        {data && <Data>{data}</Data>}
+        {children && <Data>{children}}</Data>}
     </ImageCard>
 );

@@ -1,12 +1,12 @@
 import { RECEIVE_CHARACTERS } from './actions';
 
-const characterReducer = function(state = [], action) {
+const pageReducer = function(state = 0, action) {
     switch (action.type) {
         case RECEIVE_CHARACTERS:
-            return action.characters;
+            return state + 1;
         default:
             return state;
     }
 };
 
-export default characterReducer;
+export default pageReducer;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Animation from './animation';
 import { Link, withRouter } from 'react-router-dom';
 import { BLACK } from '../styles/colors';
 import ImageCard from '../styles/image-card';
@@ -20,7 +21,9 @@ const PhotoList = ({ characters, match }) => (
         <Banner />
         {characters.map(character => (
             <Link key={character.id} to={`${match.url}/${character.id}`}>
-                <ImageCard src={character.image} />
+                <Animation>
+                    <ImageCard src={character.image} />
+                </Animation>
             </Link>
         ))}
     </Wrapper>

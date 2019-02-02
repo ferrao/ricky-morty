@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ImageCard from '../styles/image-card';
 import { SAN_JUAN, REGAL_BLUE } from '../styles/colors';
+import moment from 'moment';
 
 const Wrapper = styled.div`
     width: 100vw;
@@ -16,13 +17,13 @@ const Wrapper = styled.div`
 const PhotoDetails = ({ character, match }) => (
     <Wrapper>
         <Link to="/">
-            <ImageCard
-                large
-                shadow
-                src={character.image}
-                header={character.name}
-                data={`${character.species} : ${character.status}`}
-            />
+            <ImageCard large shadow src={character.image} header={character.name}>
+                {`${character.species} : ${character.status}`}
+                <br />
+                {`Location: ${character.location.name}`}
+                <br />
+                {`Date of Birth: ${moment(character.created).format('MMM Do YYYY')}`}
+            </ImageCard>
         </Link>
     </Wrapper>
 );

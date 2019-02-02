@@ -1,1 +1,1 @@
-export const selectCharacter = (state, id) => state.find(character => character.id === id);
+export const selectCharacter = (state, id) => state.characters.find(character => character.id === id);
