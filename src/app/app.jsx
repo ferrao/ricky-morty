@@ -6,9 +6,6 @@ import store from '../redux/store';
 import PhotoList from '../components/photo-list-container';
 import PhotoDetails from '../components/photo-details-container';
 
-import 'normalize.css';
-import './app.css';
-
 const RouteContainer = posed.div({
     enter: { opacity: 1, delay: 200, beforeChildren: true },
     exit: { opacity: 0, delay: 200 }
