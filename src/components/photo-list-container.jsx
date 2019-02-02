@@ -7,6 +7,10 @@ import PhotoList from './photo-list';
 import Scroller from './infinite-scroll';
 
 class PhotoListContainer extends Component {
+    state = {
+        loading: false
+    };
+
     componentDidMount() {
         if (!this.props.page) {
             this.fetchNewPage();
@@ -15,6 +19,7 @@ class PhotoListContainer extends Component {
 
     fetchNewPage = async () => {
         try {
+            this.setState({ loading: true });
             const { page, receiveCharacters } = this.props;
             const { data } = await api.get(`/character?page=${page + 1}`);
 
@@ -22,18 +27,20 @@ class PhotoListContainer extends Component {
             receiveCharacters(data.results);
         } catch (error) {
             console.log(error.message);
+        } finally {
+            this.setState({ loading: false });
         }
     };
 
     render() {
         const { characters } = this.props;
+        const { loading } = this.state;
 
-        return characters.length ? (
+        return (
             <Scroller onScroll={this.fetchNewPage} offset={200}>
                 <PhotoList characters={characters} />
+                {loading && <Spinner />}
             </Scroller>
-        ) : (
-            <Spinner />
         );
     }
 }

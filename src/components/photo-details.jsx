@@ -18,7 +18,9 @@ const PhotoDetails = ({ character, match }) => (
     <Wrapper>
         <Link to="/">
             <ImageCard large shadow src={character.image} header={character.name}>
-                {`${character.species} : ${character.status}`}
+                {`Status: ${character.status}`}
+                <br />
+                {`Species: ${character.species}`}
                 <br />
                 {`Location: ${character.location.name}`}
                 <br />

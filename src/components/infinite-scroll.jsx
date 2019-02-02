@@ -12,23 +12,22 @@ class InfiniteScroll extends PureComponent {
         offset: 100
     };
 
-    handleScroll = () => {
+    handleScroll = _.throttle(() => {
         if (
             window.innerHeight + document.documentElement.scrollTop >=
             document.documentElement.offsetHeight - this.props.offset
         ) {
             this.props.onScroll();
         }
-    };
+    }, 300);
 
     componentDidMount() {
-        if (!window.onscroll) {
-            window.onscroll = _.throttle(this.handleScroll, 300);
-        }
+        window.addEventListener('scroll', this.handleScroll);
     }
 
+
     componentWillUnmount() {
-        window.onscroll = null;
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     render() {
